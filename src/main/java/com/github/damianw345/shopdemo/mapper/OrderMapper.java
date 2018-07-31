@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -36,7 +37,6 @@ public class OrderMapper {
     public Order toEntity(OrderDto orderDto){
 
         Order order = new Order();
-//        order.setOrderId(orderDto.getOrderId());
         order.setIsFinished(orderDto.getIsFinished());
         order.setFoodsToOrders(mapFoodDtoToFoodsToOrdersEntity(orderDto, order, new HashSet<>()));
 
@@ -45,7 +45,6 @@ public class OrderMapper {
 
     public Order updateEntity(Order order, OrderDto orderDto){
 
-        order.setOrderId(orderDto.getOrderId());
         order.setIsFinished(orderDto.getIsFinished());
         order.setFoodsToOrders(mapFoodDtoToFoodsToOrdersEntity(orderDto, order, order.getFoodsToOrders()));
 
@@ -58,16 +57,20 @@ public class OrderMapper {
 
     private Set<FoodsToOrders> mapFoodDtoToFoodsToOrdersEntity(OrderDto orderDto, Order order, Set<FoodsToOrders> foodsToOrdersSet){
 
-        for(FoodDto foodDto : orderDto.getFoodDtos()){
-            Food food = foodRepository.getOne(foodDto.getFoodId());
 
-            FoodsToOrders foodsToOrders = new FoodsToOrders();
-            foodsToOrders.setOrder(order);
-            foodsToOrders.setFood(food);
-            foodsToOrders.setFoodAmount(foodDto.getAmount());
+        if(Objects.nonNull(orderDto.getFoodDtos())){
+            for(FoodDto foodDto : orderDto.getFoodDtos()){
+                Food food = foodRepository.getOne(foodDto.getFoodId());
 
-            foodsToOrdersSet.add(foodsToOrders);
+                FoodsToOrders foodsToOrders = new FoodsToOrders();
+                foodsToOrders.setOrder(order);
+                foodsToOrders.setFood(food);
+                foodsToOrders.setFoodAmount(foodDto.getAmount());
+
+                foodsToOrdersSet.add(foodsToOrders);
+            }
         }
+
         return foodsToOrdersSet;
     }
 }

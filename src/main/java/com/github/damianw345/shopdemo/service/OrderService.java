@@ -50,6 +50,8 @@ public class OrderService {
     @Transactional
     public OrderDto updateOrder(OrderDto dto, Long id) {
 
+        dto.setOrderId(id);
+
         return Optional.ofNullable(orderRepository.getOne(id))
                 .map(order ->  orderMapper.updateEntity(order, dto))
                 .map(orderRepository::save)
