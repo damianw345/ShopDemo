@@ -8,7 +8,6 @@ import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
-//@RequiredArgsConstructor
 @Getter
 @Setter
 @Entity(name = "iceCreams")
@@ -27,6 +26,18 @@ public class IceCream {
 
     @Column
     private String imagePath;
+
+    @OneToOne
+    @JoinColumn(name = "dressing_id")
+    private Dressing dressing;
+
+    @OneToMany
+    @JoinColumn(name = "flavour_id")
+    private Set<Flavour> flavours;
+
+    @OneToOne
+    @JoinColumn(name = "sauce_id")
+    private Sauce sauce;
 
     @OneToMany(mappedBy = "iceCream", cascade = CascadeType.ALL)
     private Set<IceCreamsToOrders> iceCreamsToOrders;
