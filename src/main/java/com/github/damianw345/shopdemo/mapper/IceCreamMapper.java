@@ -1,5 +1,6 @@
 package com.github.damianw345.shopdemo.mapper;
 
+import com.github.damianw345.shopdemo.dao.Flavour;
 import com.github.damianw345.shopdemo.dao.IceCream;
 import com.github.damianw345.shopdemo.dto.BasicIceCreamDto;
 import com.github.damianw345.shopdemo.dto.IceCreamDto;
@@ -12,11 +13,17 @@ import java.util.stream.Collectors;
 public class IceCreamMapper {
 
     public BasicIceCreamDto toBasicDto(IceCream iceCream){
-        return new BasicIceCreamDto(iceCream.getIceCreamId(), iceCream.getName(), iceCream.getPrice());
+
+        List<Integer> flavorsIds = iceCream.getFlavours().stream().map(Flavour::getFlavourId).collect(Collectors.toList());
+
+        return new BasicIceCreamDto(iceCream.getIceCreamId(), iceCream.getName(), iceCream.getPrice(), iceCream.getSauce().getSauceId(), iceCream.getDressing().getDressingId(), flavorsIds);
     }
 
     public IceCreamDto toDto(IceCream iceCream){
-        return new IceCreamDto(iceCream.getIceCreamId(), iceCream.getName(), null, iceCream.getPrice());
+
+        List<Integer> flavorsIds = iceCream.getFlavours().stream().map(Flavour::getFlavourId).collect(Collectors.toList());
+
+        return new IceCreamDto(iceCream.getIceCreamId(), iceCream.getName(), null, iceCream.getPrice(), iceCream.getSauce().getSauceId(), iceCream.getDressing().getDressingId(), flavorsIds);
     }
 
     public IceCream toEntity(IceCreamDto dto){
@@ -41,7 +48,7 @@ public class IceCreamMapper {
         return iceCreams.stream().map(this::toBasicDto).collect(Collectors.toList());
     }
 
-    public List<BasicIceCreamDto> toDtoList(List<IceCream> iceCreams) {
-        return iceCreams.stream().map(this::toDto).collect(Collectors.toList());
-    }
+//    public List<BasicIceCreamDto> toDtoList(List<IceCream> iceCreams) {
+//        return iceCreams.stream().map(this::toDto).collect(Collectors.toList());
+//    }
 }
