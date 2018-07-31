@@ -37,6 +37,10 @@ public class FoodMapper {
         return food;
     }
 
+    public List<BasicFoodDto> toBasicDtoList(List<Food> foods) {
+        return foods.stream().map(this::toBasicDto).collect(Collectors.toList());
+    }
+
     public List<BasicFoodDto> toDtoList(List<Food> foods) {
         return foods.stream().map(this::toDto).collect(Collectors.toList());
     }

@@ -26,7 +26,7 @@ public class FoodService {
     public List<BasicFoodDto> getAllFoods() {
 
         return Optional.ofNullable(foodRepository.findAll())
-                .map(foodMapper::toDtoList)
+                .map(foodMapper::toBasicDtoList)
                 .orElseThrow(NotFoundException::new);
     }
 
