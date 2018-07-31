@@ -11,5 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 public class OrderDto {
 
+    private Long orderId;
+    private Boolean isFinished;
     private List<FoodDto> foodDtos;
 }

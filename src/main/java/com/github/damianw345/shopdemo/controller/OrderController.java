@@ -4,10 +4,11 @@ import com.github.damianw345.shopdemo.dto.OrderDto;
 import com.github.damianw345.shopdemo.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
@@ -17,8 +18,8 @@ public class OrderController
     private final OrderService orderService;
 
     @RequestMapping(method = RequestMethod.GET)
-    Page<OrderDto> getOrders(Pageable pageable) {
-        return orderService.getOrders(pageable);
+    List<OrderDto> getOrders(Pageable pageable) {
+        return orderService.getOrders();
     }
 
     @RequestMapping(method = RequestMethod.POST)

@@ -50,6 +50,7 @@ public class FoodService {
     public FoodDto updateFood(FoodDto dto, Long id) {
 
         return Optional.ofNullable(foodRepository.getOne(id))
+                .map(food -> foodMapper.updateEntity(food, dto))
                 .map(foodRepository::save)
                 .map(foodMapper::toDto)
                 .orElseThrow(NotFoundException::new);

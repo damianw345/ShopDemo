@@ -24,4 +24,7 @@ public class Order {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private Set<FoodsToOrders> foodsToOrders;
 
+    @Column
+    private Boolean isFinished;
+
 }
