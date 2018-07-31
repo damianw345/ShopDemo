@@ -1,14 +1,17 @@
 package com.github.damianw345.shopdemo.service;
 
-import com.github.damianw345.shopdemo.dao.Food;
 import com.github.damianw345.shopdemo.dto.FoodDto;
+import com.github.damianw345.shopdemo.mapper.FoodMapper;
 import com.github.damianw345.shopdemo.repository.FoodRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.ws.rs.BadRequestException;
+import javax.ws.rs.NotFoundException;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
@@ -17,34 +20,43 @@ public class FoodService {
 
 
     private final FoodRepository foodRepository;
+    private final FoodMapper foodMapper;
 
+    public List<FoodDto> getAllFoods() {
 
-    public Page<FoodDto> getFoods(Pageable pageable) {
-        return null;
-
+        return Optional.ofNullable(foodRepository.findAll())
+                .map(foodMapper::toDtoList)
+                .orElseThrow(NotFoundException::new);
     }
 
+    @Transactional
     public FoodDto addFood(FoodDto dto) {
 
-        Food food = new Food(dto.getFoodId(), dto.getName(), dto.getPrice(), "", null);
-        foodRepository.save(food);
-        return new FoodDto(food.getFoodId(), food.getName(), null, food.getPrice());
-
+        return Optional.ofNullable(dto)
+                .map(foodMapper::toEntity)
+                .map(foodRepository::save)
+                .map(foodMapper::toDto)
+                .orElseThrow(BadRequestException::new);
     }
 
-    public FoodDto getFood(String id) {
-        Food food = foodRepository.findAll().get(0);
+    public FoodDto getFood(Long id) {
 
-        return new FoodDto(food.getFoodId(), food.getName(), null, food.getPrice());
-
-
+        return Optional.ofNullable(foodRepository.getOne(id))
+                .map(foodMapper::toDto)
+                .orElseThrow(NotFoundException::new);
     }
 
-    public FoodDto updateFood(FoodDto dto, String id) {
-        return null;
+    @Transactional
+    public FoodDto updateFood(FoodDto dto, Long id) {
 
+        return Optional.ofNullable(foodRepository.getOne(id))
+                .map(foodRepository::save)
+                .map(foodMapper::toDto)
+                .orElseThrow(NotFoundException::new);
     }
 
-    public void deleteFood(String id) {
+    @Transactional
+    public void deleteFood(Long id) {
+        foodRepository.deleteById(id);
     }
 }

@@ -21,12 +21,6 @@ public class Order {
     @Column(name = "order_id")
     private Long orderId;
 
-//    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-//    @JoinTable(name = "foods_to_orders",
-//            joinColumns = { @JoinColumn(name = "order_id") },
-//            inverseJoinColumns = { @JoinColumn(name = "food_id") })
-//    private Set<Food> foods;
-
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
     private Set<FoodsToOrders> foodsToOrders;
 

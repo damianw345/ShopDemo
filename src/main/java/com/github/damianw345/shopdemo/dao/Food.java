@@ -30,11 +30,4 @@ public class Food {
 
     @OneToMany(mappedBy = "food", cascade = CascadeType.ALL)
     private Set<FoodsToOrders> foodsToOrders;
-
-
-////    @OneToMany(mappedBy = "food")
-//@ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "foods")
-//    private Set<Order> orders;
-
-
 }

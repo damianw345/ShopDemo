@@ -28,18 +28,18 @@ public class OrderController
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    OrderDto getOrder(@PathVariable String id) {
+    OrderDto getOrder(@PathVariable Long id) {
         return orderService.getOrder(id);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    OrderDto updateOrder(@RequestBody OrderDto dto, @PathVariable String id) {
+    OrderDto updateOrder(@RequestBody OrderDto dto, @PathVariable Long id) {
         return orderService.updateOrder(dto, id);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    void deleteOrder(@PathVariable String id) {
+    void deleteOrder(@PathVariable Long id) {
         orderService.deleteOrder(id);
     }
     

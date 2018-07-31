@@ -25,17 +25,17 @@ public class OrderService {
 
     }
 
-    public OrderDto getOrder(String id) {
+    public OrderDto getOrder(Long id) {
         return null;
 
     }
 
-    public OrderDto updateOrder(OrderDto dto, String id) {
+    public OrderDto updateOrder(OrderDto dto, Long id) {
         return null;
 
     }
 
-    public void deleteOrder(String id) {
+    public void deleteOrder(Long id) {
 
     }
 
