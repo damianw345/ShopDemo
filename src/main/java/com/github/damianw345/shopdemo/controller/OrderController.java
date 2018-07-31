@@ -4,7 +4,6 @@ import com.github.damianw345.shopdemo.dto.OrderDto;
 import com.github.damianw345.shopdemo.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +17,7 @@ public class OrderController
     private final OrderService orderService;
 
     @RequestMapping(method = RequestMethod.GET)
-    List<OrderDto> getOrders(Pageable pageable) {
+    List<OrderDto> getOrders() {
         return orderService.getOrders();
     }
 
@@ -43,6 +42,5 @@ public class OrderController
     void deleteOrder(@PathVariable Long id) {
         orderService.deleteOrder(id);
     }
-    
-    
+
 }

@@ -23,13 +23,6 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final OrderMapper orderMapper;
 
-//    public List<OrderDto> getOrders() {
-//
-//        return Optional.ofNullable(orderRepository.findAll())
-//                .map(orderMapper::toDtoList)
-//                .orElseThrow(NotFoundException::new);
-//    }
-
     public List<OrderDto> getOrders() {
 
         List<Order> orders = Optional.ofNullable(orderRepository.findAll())
