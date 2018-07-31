@@ -17,7 +17,7 @@ public class FoodsToOrders {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "food_order_id")
     private Long foodOrderId;
 
