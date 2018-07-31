@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BasicFoodDto {
+public class BasicIceCreamDto {
 
-    private Long foodId;
+    private Long iceCreamId;
     private String name;
     private String price;
 }

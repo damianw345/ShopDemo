@@ -11,13 +11,13 @@ import java.util.Set;
 //@RequiredArgsConstructor
 @Getter
 @Setter
-@Entity(name = "foods")
-public class Food {
+@Entity(name = "iceCreams")
+public class IceCream {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "food_id")
-    private Long foodId;
+    @Column(name = "iceCream_id")
+    private Long iceCreamId;
 
     @Column(nullable = false)
     private String name;
@@ -28,6 +28,6 @@ public class Food {
     @Column
     private String imagePath;
 
-    @OneToMany(mappedBy = "food", cascade = CascadeType.ALL)
-    private Set<FoodsToOrders> foodsToOrders;
+    @OneToMany(mappedBy = "iceCream", cascade = CascadeType.ALL)
+    private Set<IceCreamsToOrders> iceCreamsToOrders;
 }

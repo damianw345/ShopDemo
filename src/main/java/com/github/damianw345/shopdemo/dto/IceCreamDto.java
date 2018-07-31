@@ -5,12 +5,12 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class FoodDto extends BasicFoodDto {
+public class IceCreamDto extends BasicIceCreamDto {
 
     private Integer amount;
 
-    public FoodDto(Long foodId, String name, Integer amount, String price){
-        super(foodId, name, price);
+    public IceCreamDto(Long iceCreamId, String name, Integer amount, String price){
+        super(iceCreamId, name, price);
         this.amount = amount;
     }
 }

@@ -12,23 +12,23 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Getter
 @Setter
-@Entity(name = "foods_to_orders")
-public class FoodsToOrders {
+@Entity(name = "iceCreams_to_orders")
+public class IceCreamsToOrders {
 
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "food_order_id")
-    private Long foodOrderId;
+    @Column(name = "iceCream_order_id")
+    private Long iceCreamOrderId;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id")
     private Order order;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "food_id")
-    private Food food;
+    @JoinColumn(name = "iceCream_id")
+    private IceCream iceCream;
 
     @Column
-    private Integer foodAmount;
+    private Integer iceCreamAmount;
 }

@@ -22,7 +22,7 @@ public class Order {
     private Long orderId;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    private Set<FoodsToOrders> foodsToOrders;
+    private Set<IceCreamsToOrders> iceCreamsToOrders;
 
     @Column
     private Boolean isFinished;

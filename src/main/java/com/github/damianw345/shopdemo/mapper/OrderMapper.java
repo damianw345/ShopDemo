@@ -1,11 +1,11 @@
 package com.github.damianw345.shopdemo.mapper;
 
-import com.github.damianw345.shopdemo.dao.Food;
-import com.github.damianw345.shopdemo.dao.FoodsToOrders;
+import com.github.damianw345.shopdemo.dao.IceCream;
+import com.github.damianw345.shopdemo.dao.IceCreamsToOrders;
 import com.github.damianw345.shopdemo.dao.Order;
-import com.github.damianw345.shopdemo.dto.FoodDto;
+import com.github.damianw345.shopdemo.dto.IceCreamDto;
 import com.github.damianw345.shopdemo.dto.OrderDto;
-import com.github.damianw345.shopdemo.repository.FoodRepository;
+import com.github.damianw345.shopdemo.repository.IceCreamRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,25 +20,25 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class OrderMapper {
 
-    private final FoodMapper foodMapper;
-    private final FoodRepository foodRepository;
+    private final IceCreamMapper iceCreamMapper;
+    private final IceCreamRepository iceCreamRepository;
 
     public OrderDto toDto(Order order){
 
-        List<FoodDto> foodDtos = order.getFoodsToOrders()
+        List<IceCreamDto> iceCreamDtos = order.getIceCreamsToOrders()
                 .stream()
-                .map(FoodsToOrders::getFood)
-                .map(foodMapper::toDto)
+                .map(IceCreamsToOrders::getIceCream)
+                .map(iceCreamMapper::toDto)
                 .collect(Collectors.toList());
 
-        return new OrderDto(order.getOrderId(), order.getIsFinished(), foodDtos);
+        return new OrderDto(order.getOrderId(), order.getIsFinished(), iceCreamDtos);
     }
 
     public Order toEntity(OrderDto orderDto){
 
         Order order = new Order();
         order.setIsFinished(orderDto.getIsFinished());
-        order.setFoodsToOrders(mapFoodDtoToFoodsToOrdersEntity(orderDto, order, new HashSet<>()));
+        order.setIceCreamsToOrders(mapIceCreamDtoToIceCreamsToOrdersEntity(orderDto, order, new HashSet<>()));
 
         return order;
     }
@@ -46,7 +46,7 @@ public class OrderMapper {
     public Order updateEntity(Order order, OrderDto orderDto){
 
         order.setIsFinished(orderDto.getIsFinished());
-        order.setFoodsToOrders(mapFoodDtoToFoodsToOrdersEntity(orderDto, order, order.getFoodsToOrders()));
+        order.setIceCreamsToOrders(mapIceCreamDtoToIceCreamsToOrdersEntity(orderDto, order, order.getIceCreamsToOrders()));
 
         return order;
     }
@@ -55,22 +55,22 @@ public class OrderMapper {
         return orders.stream().map(this::toDto).collect(Collectors.toList());
     }
 
-    private Set<FoodsToOrders> mapFoodDtoToFoodsToOrdersEntity(OrderDto orderDto, Order order, Set<FoodsToOrders> foodsToOrdersSet){
+    private Set<IceCreamsToOrders> mapIceCreamDtoToIceCreamsToOrdersEntity(OrderDto orderDto, Order order, Set<IceCreamsToOrders> iceCreamsToOrdersSet){
 
 
-        if(Objects.nonNull(orderDto.getFoodDtos())){
-            for(FoodDto foodDto : orderDto.getFoodDtos()){
-                Food food = foodRepository.getOne(foodDto.getFoodId());
+        if(Objects.nonNull(orderDto.getIceCreamDtos())){
+            for(IceCreamDto iceCreamDto : orderDto.getIceCreamDtos()){
+                IceCream iceCream = iceCreamRepository.getOne(iceCreamDto.getIceCreamId());
 
-                FoodsToOrders foodsToOrders = new FoodsToOrders();
-                foodsToOrders.setOrder(order);
-                foodsToOrders.setFood(food);
-                foodsToOrders.setFoodAmount(foodDto.getAmount());
+                IceCreamsToOrders iceCreamsToOrders = new IceCreamsToOrders();
+                iceCreamsToOrders.setOrder(order);
+                iceCreamsToOrders.setIceCream(iceCream);
+                iceCreamsToOrders.setIceCreamAmount(iceCreamDto.getAmount());
 
-                foodsToOrdersSet.add(foodsToOrders);
+                iceCreamsToOrdersSet.add(iceCreamsToOrders);
             }
         }
 
-        return foodsToOrdersSet;
+        return iceCreamsToOrdersSet;
     }
 }
