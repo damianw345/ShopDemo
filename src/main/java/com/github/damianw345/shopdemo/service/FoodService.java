@@ -1,5 +1,6 @@
 package com.github.damianw345.shopdemo.service;
 
+import com.github.damianw345.shopdemo.dto.BasicFoodDto;
 import com.github.damianw345.shopdemo.dto.FoodDto;
 import com.github.damianw345.shopdemo.mapper.FoodMapper;
 import com.github.damianw345.shopdemo.repository.FoodRepository;
@@ -22,7 +23,7 @@ public class FoodService {
     private final FoodRepository foodRepository;
     private final FoodMapper foodMapper;
 
-    public List<FoodDto> getAllFoods() {
+    public List<BasicFoodDto> getAllFoods() {
 
         return Optional.ofNullable(foodRepository.findAll())
                 .map(foodMapper::toDtoList)
@@ -30,29 +31,29 @@ public class FoodService {
     }
 
     @Transactional
-    public FoodDto addFood(FoodDto dto) {
+    public BasicFoodDto addFood(FoodDto dto) {
 
         return Optional.ofNullable(dto)
                 .map(foodMapper::toEntity)
                 .map(foodRepository::save)
-                .map(foodMapper::toDto)
+                .map(foodMapper::toBasicDto)
                 .orElseThrow(BadRequestException::new);
     }
 
-    public FoodDto getFood(Long id) {
+    public BasicFoodDto getFood(Long id) {
 
         return Optional.ofNullable(foodRepository.getOne(id))
-                .map(foodMapper::toDto)
+                .map(foodMapper::toBasicDto)
                 .orElseThrow(NotFoundException::new);
     }
 
     @Transactional
-    public FoodDto updateFood(FoodDto dto, Long id) {
+    public BasicFoodDto updateFood(FoodDto dto, Long id) {
 
         return Optional.ofNullable(foodRepository.getOne(id))
                 .map(food -> foodMapper.updateEntity(food, dto))
                 .map(foodRepository::save)
-                .map(foodMapper::toDto)
+                .map(foodMapper::toBasicDto)
                 .orElseThrow(NotFoundException::new);
     }
 

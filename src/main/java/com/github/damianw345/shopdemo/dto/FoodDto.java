@@ -2,15 +2,15 @@ package com.github.damianw345.shopdemo.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
-public class FoodDto {
+public class FoodDto extends BasicFoodDto {
 
-    private Long foodId;
-    private String name;
     private Integer amount;
-    private String price;
+
+    public FoodDto(Long foodId, String name, Integer amount, String price){
+        super(foodId, name, price);
+        this.amount = amount;
+    }
 }

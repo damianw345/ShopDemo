@@ -1,6 +1,7 @@
 package com.github.damianw345.shopdemo.mapper;
 
 import com.github.damianw345.shopdemo.dao.Food;
+import com.github.damianw345.shopdemo.dto.BasicFoodDto;
 import com.github.damianw345.shopdemo.dto.FoodDto;
 import org.springframework.stereotype.Component;
 
@@ -9,6 +10,10 @@ import java.util.stream.Collectors;
 
 @Component
 public class FoodMapper {
+
+    public BasicFoodDto toBasicDto(Food food){
+        return new BasicFoodDto(food.getFoodId(), food.getName(), food.getPrice());
+    }
 
     public FoodDto toDto(Food food){
         return new FoodDto(food.getFoodId(), food.getName(), null, food.getPrice());
@@ -26,16 +31,13 @@ public class FoodMapper {
 
     public Food updateEntity(Food food, FoodDto foodDto){
 
-        food.setFoodId(foodDto.getFoodId());
         food.setName(foodDto.getName());
         food.setPrice(foodDto.getPrice());
-
-//        food.setFoodsToOrders(); ????
 
         return food;
     }
 
-    public List<FoodDto> toDtoList(List<Food> foods) {
+    public List<BasicFoodDto> toDtoList(List<Food> foods) {
         return foods.stream().map(this::toDto).collect(Collectors.toList());
     }
 }
