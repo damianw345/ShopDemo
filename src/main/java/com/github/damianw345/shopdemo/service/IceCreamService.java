@@ -1,6 +1,5 @@
 package com.github.damianw345.shopdemo.service;
 
-import com.github.damianw345.shopdemo.dto.BasicIceCreamDto;
 import com.github.damianw345.shopdemo.dto.IceCreamDto;
 import com.github.damianw345.shopdemo.mapper.IceCreamMapper;
 import com.github.damianw345.shopdemo.repository.IceCreamRepository;
@@ -23,37 +22,37 @@ public class IceCreamService {
     private final IceCreamRepository iceCreamRepository;
     private final IceCreamMapper iceCreamMapper;
 
-    public List<BasicIceCreamDto> getAllIceCreams() {
+    public List<IceCreamDto> getAllIceCreams() {
 
         return Optional.ofNullable(iceCreamRepository.findAll())
-                .map(iceCreamMapper::toBasicDtoList)
+                .map(iceCreamMapper::toDtoList)
                 .orElseThrow(NotFoundException::new);
     }
 
     @Transactional
-    public BasicIceCreamDto addIceCream(IceCreamDto dto) {
+    public IceCreamDto addIceCream(IceCreamDto dto) {
 
         return Optional.ofNullable(dto)
                 .map(iceCreamMapper::toEntity)
                 .map(iceCreamRepository::save)
-                .map(iceCreamMapper::toBasicDto)
+                .map(iceCreamMapper::toDto)
                 .orElseThrow(BadRequestException::new);
     }
 
-    public BasicIceCreamDto getIceCream(Long id) {
+    public IceCreamDto getIceCream(Long id) {
 
         return Optional.ofNullable(iceCreamRepository.getOne(id))
-                .map(iceCreamMapper::toBasicDto)
+                .map(iceCreamMapper::toDto)
                 .orElseThrow(NotFoundException::new);
     }
 
     @Transactional
-    public BasicIceCreamDto updateIceCream(IceCreamDto dto, Long id) {
+    public IceCreamDto updateIceCream(IceCreamDto dto, Long id) {
 
         return Optional.ofNullable(iceCreamRepository.getOne(id))
                 .map(iceCream -> iceCreamMapper.updateEntity(iceCream, dto))
                 .map(iceCreamRepository::save)
-                .map(iceCreamMapper::toBasicDto)
+                .map(iceCreamMapper::toDto)
                 .orElseThrow(NotFoundException::new);
     }
 

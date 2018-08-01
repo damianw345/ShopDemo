@@ -10,6 +10,12 @@ buildscript {
 	}
 }
 
+plugins {
+	id 'net.ltgt.apt' version '0.8'
+	id "org.flywaydb.flyway" version "5.0.3"
+	id 'java'
+}
+
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
@@ -32,6 +38,8 @@ dependencies {
 
 	// Database configuration
 	runtime('mysql:mysql-connector-java')
+	compile("org.flywaydb:flyway-core:5.0.3")
+
 
 	// REST
 	compile("org.glassfish.jersey.core:jersey-common:2.22.2")
@@ -41,4 +49,11 @@ dependencies {
 	compile("io.springfox:springfox-swagger-ui:2.7.0")
 
 	compileOnly('org.projectlombok:lombok')
+}
+
+flyway {
+	url = 'jdbc:mysql://localhost:3306/ice_cream_shop?autoReconnect=true&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC'
+	user = 'root'
+	password = 'damiana11'
+	schemas = ['ice_cream_shop']
 }

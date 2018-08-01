@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,10 +20,6 @@ public class Order {
     @Column(name = "order_id")
     private Long orderId;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    private Set<IceCreamsToOrders> iceCreamsToOrders;
-
     @Column
     private Boolean isFinished;
-
 }

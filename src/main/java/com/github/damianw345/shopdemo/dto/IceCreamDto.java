@@ -7,12 +7,10 @@ import java.util.List;
 
 @Data
 @AllArgsConstructor
-public class IceCreamDto extends BasicIceCreamDto {
+public class IceCreamDto {
 
-    private Integer amount;
-
-    public IceCreamDto(Long iceCreamId, String name, Integer amount, String price, Integer sauceId, Integer dressingId, List<Integer> flavoursIds){
-        super(iceCreamId, name, price, sauceId, dressingId, flavoursIds);
-        this.amount = amount;
-    }
+    private Long iceCreamId;
+    private String sauce;
+    private String dressing;
+    private List<String> flavours;
 }

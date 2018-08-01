@@ -3,11 +3,11 @@ package com.github.damianw345.shopdemo.dao;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Set;
 
 
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Getter
 @Setter
 @Entity(name = "iceCreams")
@@ -18,27 +18,19 @@ public class IceCream {
     @Column(name = "iceCream_id")
     private Long iceCreamId;
 
-    @Column(nullable = false)
-    private String name;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "order_id")
+    private Order order;
 
-    @Column(nullable = false)
-    private String price;
+    @Column(name = "dressing")
+    private String dressing;
 
-    @Column
-    private String imagePath;
+    @Column(name = "first_flavour")
+    private String firstFlavour;
 
-    @OneToOne
-    @JoinColumn(name = "dressing_id")
-    private Dressing dressing;
+    @Column(name = "second_flavour")
+    private String secondFlavour;
 
-    @OneToMany
-    @JoinColumn(name = "flavour_id")
-    private Set<Flavour> flavours;
-
-    @OneToOne
-    @JoinColumn(name = "sauce_id")
-    private Sauce sauce;
-
-    @OneToMany(mappedBy = "iceCream", cascade = CascadeType.ALL)
-    private Set<IceCreamsToOrders> iceCreamsToOrders;
+    @Column(name = "sauce")
+    private String sauce;
 }
