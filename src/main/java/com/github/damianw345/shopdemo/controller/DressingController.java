@@ -1,6 +1,7 @@
 package com.github.damianw345.shopdemo.controller;
 
 import com.github.damianw345.shopdemo.dao.Dressing;
+import com.github.damianw345.shopdemo.dto.DressingDto;
 import com.github.damianw345.shopdemo.service.DressingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class DressingController {
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    Dressing addDressing(@RequestBody Dressing dto) {
+    Dressing addDressing(@RequestBody DressingDto dto) {
         return dressingService.addDressing(dto);
     }
 

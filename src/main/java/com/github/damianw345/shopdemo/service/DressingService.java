@@ -1,11 +1,14 @@
 package com.github.damianw345.shopdemo.service;
 
 import com.github.damianw345.shopdemo.dao.Dressing;
+import com.github.damianw345.shopdemo.dto.DressingDto;
+import com.github.damianw345.shopdemo.repository.DressingRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.ws.rs.NotFoundException;
 import java.util.List;
 
 @Service
@@ -13,19 +16,24 @@ import java.util.List;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class DressingService {
 
+    private final DressingRepository dressingRepository;
+
     public List<Dressing> getDressings() {
-        return null;
+
+        return dressingRepository.findAll();
     }
 
-    public Dressing addDressing(Dressing dto) {
-        return null;
+    public Dressing addDressing(DressingDto dto) {
+
+        return dressingRepository.save(new Dressing(null, dto.getDressingName()));
     }
 
     public Dressing getDressing(Long id) {
-        return null;
+        return dressingRepository.findById(id)
+                .orElseThrow(NotFoundException::new);
     }
 
     public void deleteDressing(Long id) {
-
+        dressingRepository.deleteById(id);
     }
 }
