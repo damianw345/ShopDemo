@@ -1,6 +1,7 @@
 package com.github.damianw345.shopdemo.controller;
 
 import com.github.damianw345.shopdemo.dao.Sauce;
+import com.github.damianw345.shopdemo.dto.SauceDto;
 import com.github.damianw345.shopdemo.service.SauceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class SauceController {
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    Sauce addSauce(@RequestBody Sauce dto) {
+    Sauce addSauce(@RequestBody SauceDto dto) {
         return sauceService.addSauce(dto);
     }
 
