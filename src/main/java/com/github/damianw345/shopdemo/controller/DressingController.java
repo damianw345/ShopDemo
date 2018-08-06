@@ -1,6 +1,6 @@
 package com.github.damianw345.shopdemo.controller;
 
-import com.github.damianw345.shopdemo.dao.Dressing;
+import com.github.damianw345.shopdemo.entity.Dressing;
 import com.github.damianw345.shopdemo.dto.DressingDto;
 import com.github.damianw345.shopdemo.service.DressingService;
 import lombok.RequiredArgsConstructor;

@@ -1,6 +1,6 @@
 package com.github.damianw345.shopdemo.mapper;
 
-import com.github.damianw345.shopdemo.dao.IceCream;
+import com.github.damianw345.shopdemo.entity.IceCream;
 import com.github.damianw345.shopdemo.dto.IceCreamDto;
 import org.springframework.stereotype.Component;
 

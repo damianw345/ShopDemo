@@ -1,6 +1,6 @@
 package com.github.damianw345.shopdemo.controller;
 
-import com.github.damianw345.shopdemo.dao.Flavour;
+import com.github.damianw345.shopdemo.entity.Flavour;
 import com.github.damianw345.shopdemo.dto.FlavourDto;
 import com.github.damianw345.shopdemo.service.FlavourService;
 import lombok.RequiredArgsConstructor;

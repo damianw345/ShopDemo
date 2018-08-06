@@ -1,6 +1,6 @@
 package com.github.damianw345.shopdemo.service;
 
-import com.github.damianw345.shopdemo.dao.Sauce;
+import com.github.damianw345.shopdemo.entity.Sauce;
 import com.github.damianw345.shopdemo.dto.SauceDto;
 import com.github.damianw345.shopdemo.repository.SauceRepository;
 import lombok.RequiredArgsConstructor;

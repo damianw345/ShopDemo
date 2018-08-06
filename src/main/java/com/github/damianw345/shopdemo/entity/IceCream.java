@@ -1,4 +1,4 @@
-package com.github.damianw345.shopdemo.dao;
+package com.github.damianw345.shopdemo.entity;
 
 import lombok.*;
 

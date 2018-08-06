@@ -1,5 +1,4 @@
-package com.github.damianw345.shopdemo.dao;
-
+package com.github.damianw345.shopdemo.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -12,14 +11,14 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Getter
 @Setter
-@Entity(name = "dressings")
-public class Dressing {
+@Entity(name = "sauces")
+public class Sauce {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "dressing_id")
-    private Long dressingId;
+    @Column(name = "sauce_id")
+    private Long sauceId;
 
     @Column
-    private String dressingName;
+    private String sauceName;
 }

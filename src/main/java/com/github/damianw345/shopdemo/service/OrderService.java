@@ -1,7 +1,7 @@
 package com.github.damianw345.shopdemo.service;
 
-import com.github.damianw345.shopdemo.dao.IceCream;
-import com.github.damianw345.shopdemo.dao.Order;
+import com.github.damianw345.shopdemo.entity.IceCream;
+import com.github.damianw345.shopdemo.entity.Order;
 import com.github.damianw345.shopdemo.dto.IceCreamDto;
 import com.github.damianw345.shopdemo.dto.OrderDto;
 import com.github.damianw345.shopdemo.mapper.IceCreamMapper;
