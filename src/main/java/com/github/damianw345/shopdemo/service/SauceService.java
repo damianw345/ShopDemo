@@ -22,8 +22,10 @@ public class SauceService {
         return sauceRepository.findAll();
     }
 
+    @Transactional
     public Sauce addSauce(SauceDto dto) {
-        return new Sauce(null, dto.getSauceName());
+
+        return sauceRepository.save(new Sauce(null, dto.getSauceName()));
     }
 
     public Sauce getSauce(Long id) {
@@ -31,6 +33,7 @@ public class SauceService {
                 .orElseThrow(NotFoundException::new);
     }
 
+    @Transactional
     public void deleteSauce(Long id) {
         sauceRepository.deleteById(id);
     }

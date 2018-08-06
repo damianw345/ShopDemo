@@ -23,6 +23,7 @@ public class DressingService {
         return dressingRepository.findAll();
     }
 
+    @Transactional
     public Dressing addDressing(DressingDto dto) {
 
         return dressingRepository.save(new Dressing(null, dto.getDressingName()));
@@ -33,6 +34,7 @@ public class DressingService {
                 .orElseThrow(NotFoundException::new);
     }
 
+    @Transactional
     public void deleteDressing(Long id) {
         dressingRepository.deleteById(id);
     }

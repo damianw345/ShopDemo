@@ -22,6 +22,7 @@ public class FlavourService {
         return flavourRepository.findAll();
     }
 
+    @Transactional
     public Flavour addFlavour(FlavourDto dto) {
         return flavourRepository.save(new Flavour(null, dto.getFlavourName()));
     }
@@ -30,6 +31,7 @@ public class FlavourService {
         return flavourRepository.findById(id).orElseThrow(NotFoundException::new);
     }
 
+    @Transactional
     public void deleteFlavour(Long id) {
         flavourRepository.deleteById(id);
     }
