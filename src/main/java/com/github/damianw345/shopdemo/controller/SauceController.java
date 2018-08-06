@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 @RestController
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-@RequestMapping("/sauce")
+@RequestMapping("/sauces")
 public class SauceController {
 
     private final SauceService sauceService;

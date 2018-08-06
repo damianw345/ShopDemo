@@ -29,7 +29,7 @@ public class IceCreamMapper {
         String secondFlavour = getSecondFlavourIfPresent(dto);
 
         return IceCream.builder()
-                .iceCreamId(dto.getIceCreamId())
+//                .iceCreamId(dto.getIceCreamId())
                 .dressing(dto.getDressing())
                 .sauce(dto.getSauce())
                 .firstFlavour(dto.getFlavours().get(0))

@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
-@RequestMapping("/dressing")
+@RequestMapping("/dressings")
 public class DressingController {
 
     private final DressingService dressingService;

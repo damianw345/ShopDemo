@@ -13,5 +13,5 @@ public class OrderDto {
 
     private Long orderId;
     private Boolean isFinished;
-    private List<IceCreamDto> iceCreamDtos;
+    private List<IceCreamDto> iceCreams;
 }

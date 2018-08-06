@@ -1,8 +1,12 @@
 package com.github.damianw345.shopdemo.service;
 
+import com.github.damianw345.shopdemo.dao.IceCream;
 import com.github.damianw345.shopdemo.dao.Order;
+import com.github.damianw345.shopdemo.dto.IceCreamDto;
 import com.github.damianw345.shopdemo.dto.OrderDto;
+import com.github.damianw345.shopdemo.mapper.IceCreamMapper;
 import com.github.damianw345.shopdemo.mapper.OrderMapper;
+import com.github.damianw345.shopdemo.repository.IceCreamRepository;
 import com.github.damianw345.shopdemo.repository.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +25,9 @@ import java.util.stream.Collectors;
 public class OrderService {
 
     private final OrderRepository orderRepository;
+    private final IceCreamRepository iceCreamRepository;
     private final OrderMapper orderMapper;
+    private final IceCreamMapper iceCreamMapper;
 
     public List<OrderDto> getOrders() {
 
@@ -34,11 +40,22 @@ public class OrderService {
     @Transactional
     public OrderDto addOrder(OrderDto dto) {
 
-        return Optional.ofNullable(dto)
+        Order order = Optional.ofNullable(dto)
                 .map(orderMapper::toEntity)
                 .map(orderRepository::save)
-                .map(orderMapper::toDto)
                 .orElseThrow(BadRequestException::new);
+
+
+        for(IceCreamDto iceCreamDto : dto.getIceCreams()){
+            IceCream iceCream = iceCreamMapper.toEntity(iceCreamDto);
+            iceCream.setOrder(order);
+            iceCreamRepository.save(iceCream);
+            iceCreamDto.setIceCreamId(iceCream.getIceCreamId());
+        }
+
+        dto.setOrderId(order.getOrderId());
+
+        return dto;
     }
 
     public OrderDto getOrder(Long id) {
