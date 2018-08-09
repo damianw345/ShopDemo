@@ -17,8 +17,8 @@ public class OrderController
     private final OrderService orderService;
 
     @RequestMapping(method = RequestMethod.GET)
-    List<OrderDto> getOrders() {
-        return orderService.getOrders();
+    List<OrderDto> getOrders(@RequestParam(value = "filter", required = false, defaultValue = "all") String finished) {
+        return orderService.getOrders(finished);
     }
 
     @RequestMapping(method = RequestMethod.POST)

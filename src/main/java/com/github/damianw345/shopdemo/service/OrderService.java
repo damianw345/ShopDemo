@@ -29,10 +29,20 @@ public class OrderService {
     private final OrderMapper orderMapper;
     private final IceCreamMapper iceCreamMapper;
 
-    public List<OrderDto> getOrders() {
+    public List<OrderDto> getOrders(String filter) {
 
-        List<Order> orders = Optional.ofNullable(orderRepository.findAll())
-                .orElseThrow(NotFoundException::new);
+        List<Order> orders = null;
+
+        if(filter.equalsIgnoreCase("all")){
+            orders = orderRepository.findAll();
+
+        } else if(filter.equalsIgnoreCase("finished")){
+            orders = orderRepository.findByIsFinished(true);
+
+        } else if(filter.equalsIgnoreCase("not_finished")){
+            orders = orderRepository.findByIsFinished(false);
+        }
+
 
         return orders.stream().map(orderMapper::toDto).collect(Collectors.toList());
     }
