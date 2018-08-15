@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Basic Web Page</title>
+    </head>
+    <body>
+
+        <button id="get-dressings" onclick="getIngredients('GET', 'http://localhost:8080/', 'dressings')">Get dressings</button>
+        <button id="get-flavours" onclick="getIngredients('GET', 'http://localhost:8080/', 'flavours')">Get flavours</button>
+        <button id="get-sauces" onclick="getIngredients('GET', 'http://localhost:8080/', 'sauces')">Get sauces</button>
+
+        <!-- all orders, finished or not finished -->
+        <button id="get-orders" onclick="getOrders('GET', 'http://localhost:8080/', 'orders', 'all')">Get ALL orders</button>
+        <button id="get-orders" onclick="getOrders('GET', 'http://localhost:8080/', 'orders', 'finished')">Get finished orders</button>
+        <button id="get-orders" onclick="getOrders('GET', 'http://localhost:8080/', 'orders', 'not_finished')">Get not finished orders</button>
+
+        <button id="post-order" onclick="postOrder('http://localhost:8080/', 'orders')">Post order</button>
+
+    
+        <ul id="dynamic-dressings"></ul>
+        <ul id="dynamic-flavours"></ul>
+        <ul id="dynamic-sauces"></ul>
+
+        <!-- <button onclick="addItem()">add item</button>
+        <button onclick="removeItem()">remove item</button> -->
+
+    </body>
+
+	<script type="text/javascript" src="main.js"></script>
+	<script type="text/javascript" src="post-order.js"></script>
+</html>
