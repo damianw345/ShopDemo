@@ -34,7 +34,8 @@ dependencies {
 	// Spring related
 	compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
 	compile("org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}")
-	compile('org.springframework.boot:spring-boot-starter-data-rest')
+	compile("org.springframework.boot:spring-boot-starter-data-rest:${springBootVersion}")
+	compile("org.springframework.boot:spring-boot-starter-security:${springBootVersion}")
 
 	// Database configuration
 	runtime('mysql:mysql-connector-java')
