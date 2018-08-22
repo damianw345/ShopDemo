@@ -64,9 +64,26 @@ var iceCream = new Array();
 
 //funkcja wyboru dostepnych skladnikow dla lodow
 function dostepneSkladniki(){
-	document.querySelector("#noweZamowienieButton").style.display = "none";
-	document.querySelector("#dostepneSkladnikiButton").style.display = "none";
+	// document.querySelector("#noweZamowienieButton").style.display = "none";
+	// document.querySelector("#dostepneSkladnikiButton").style.display = "none";
+
+	fetch('http://localhost:8080/dressings')
+    .then(response => response.json())
+    .then(dressingsArr => {
+		console.log(dressingsArr)
+		return dressingsArr;
+	})
+	.then(showAvailableDressings)
+	.catch(err => alert('Error occured ' + err)) 
 }
+
+const showAvailableDressings = (dressingsArr) => {
+	dressingsArr.forEach(dressing => {
+		console.log(dressing);
+	});
+	
+}
+
 //funkcja dodajaca nowe zamowienie, inkrementuje numer zamowienia, przechodzi do formy zamowienia
 function noweZamowienie(){
 	document.querySelector("#noweZamowienieButton").style.display = "none";
