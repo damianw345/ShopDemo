@@ -1,0 +1,138 @@
+body{
+	width: 100%;
+	margin: 0 auto;
+	
+	background-image: url("bg.png") !important;
+	background-size: cover !important;
+}
+.container{
+	
+}
+.left-side{
+	background-color: rgba(63,59,59,0.9);
+	
+	height: 90vh;
+	border-radius: 20px;
+	margin-top: 5vh;
+}
+#container-p{
+	color: white;
+	font-size: 32px;
+	text-align: center;
+	border-bottom: 2px solid #facf5a;
+}
+.choose-window{
+	height: 75vh;
+	overflow: auto;
+	display: none;
+}
+#noweZamowienieButton{
+	background-color: #63aebb;
+	text-align: center;
+	color: white;
+	line-height: 60px;
+	border-radius: 5px;
+}
+#noweZamowienieButton:hover{
+	cursor: pointer;
+}
+#dostepneSkladnikiButton{
+	background-color: #8B7355;
+	text-align: center;
+	color: white;
+	line-height: 60px;
+	border-radius: 5px;
+	margin-top: 20px;
+}
+#dostepneSkladnikiButton:hover{
+	cursor: pointer;
+}
+#zamowienieForm{
+	display: none;
+}
+.btn-dodaj-loda{
+	background-color: #63aebb;
+	text-align: center;
+	color: white;
+	line-height: 60px;
+	border-radius: 5px;
+}	
+}
+.btn-dodaj-loda:hover{
+	cursor: pointer;
+}
+.btn-anuluj-zamowienie{
+	background-color: #AF4035;
+	text-align: center;
+	color: white;
+	margin-top: 20px;
+	line-height: 60px;
+	border-radius: 5px;
+}	
+.btn-anuluj-zamowienie:hover{
+	cursor: pointer;
+}
+.btn-zloz-zamowienie{
+	background-color: #629632;
+	text-align: center;
+	color: white;
+	margin-top: 20px;
+	line-height: 60px;
+	border-radius: 5px;
+}	
+.btn-zloz-zamowienie:hover{
+	cursor: pointer;
+}
+.typ{
+	margin-left: auto !important;
+	margin-right: auto !important;
+	background-color: #2e282a;
+	border-radius: 10px;
+	border: 1px solid #facf5a;
+}
+.typ h3{
+	text-align: center;
+	color: white;
+}
+.typ p{
+	color: white;	
+	margin-top: 10px;
+}
+.skladnik{
+	border-bottom: 1px solid #facf5a;
+}
+.dodaj-button{
+	float: right;
+	background-color: #f95959 !important;
+}
+.dodatek{
+	border-bottom: 1px solid #facf5a;
+}
+.btn-down-section{
+	display: block !important;
+	margin: 0 auto !important;
+	padding: 20px !important;
+}
+#smak1{
+	color: white;
+	border-radius: 5px;
+	padding: 0px 15px;
+	margin-bottom: 10px;
+}
+
+#right-side{
+	background-color: rgba(63,59,59,0.8);
+	height: 90vh;
+	border-radius: 20px;
+	margin-top: 5vh;
+}
+#right-side-form{
+	height: 75vh;
+	overflow: auto;
+}
+#podsumowanie{
+	color: white;
+	font-size: 32px;
+	text-align: center;
+	border-bottom: 2px solid #facf5a;
+}
