@@ -1,7 +1,7 @@
 package com.github.damianw345.shopdemo.controller;
 
-import com.github.damianw345.shopdemo.entity.Flavour;
 import com.github.damianw345.shopdemo.dto.FlavourDto;
+import com.github.damianw345.shopdemo.dto.ResponseDto;
 import com.github.damianw345.shopdemo.service.FlavourService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,18 +18,18 @@ public class FlavourController {
     private final FlavourService flavourService;
 
     @RequestMapping(method = RequestMethod.GET)
-    List<Flavour> getFlavours() {
+    List<ResponseDto> getFlavours() {
         return flavourService.getFlavours();
     }
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    Flavour addFlavour(@RequestBody FlavourDto dto) {
+    ResponseDto addFlavour(@RequestBody FlavourDto dto) {
         return flavourService.addFlavour(dto);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    Flavour getFlavour(@PathVariable Long id) {
+    ResponseDto getFlavour(@PathVariable Long id) {
         return flavourService.getFlavour(id);
     }
 

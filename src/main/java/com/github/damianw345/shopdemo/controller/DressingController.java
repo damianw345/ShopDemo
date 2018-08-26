@@ -1,7 +1,7 @@
 package com.github.damianw345.shopdemo.controller;
 
-import com.github.damianw345.shopdemo.entity.Dressing;
 import com.github.damianw345.shopdemo.dto.DressingDto;
+import com.github.damianw345.shopdemo.dto.ResponseDto;
 import com.github.damianw345.shopdemo.service.DressingService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,18 +18,18 @@ public class DressingController {
     private final DressingService dressingService;
 
     @RequestMapping(method = RequestMethod.GET)
-    List<Dressing> getDressings() {
+    List<ResponseDto> getDressings() {
         return dressingService.getDressings();
     }
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    Dressing addDressing(@RequestBody DressingDto dto) {
+    ResponseDto addDressing(@RequestBody DressingDto dto) {
         return dressingService.addDressing(dto);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    Dressing getDressing(@PathVariable Long id) {
+    ResponseDto getDressing(@PathVariable Long id) {
         return dressingService.getDressing(id);
     }
 

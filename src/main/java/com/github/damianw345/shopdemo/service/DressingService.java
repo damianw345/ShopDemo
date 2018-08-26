@@ -1,7 +1,8 @@
 package com.github.damianw345.shopdemo.service;
 
-import com.github.damianw345.shopdemo.entity.Dressing;
 import com.github.damianw345.shopdemo.dto.DressingDto;
+import com.github.damianw345.shopdemo.dto.ResponseDto;
+import com.github.damianw345.shopdemo.entity.Dressing;
 import com.github.damianw345.shopdemo.repository.DressingRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.ws.rs.NotFoundException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional(readOnly = true)
@@ -18,20 +20,24 @@ public class DressingService {
 
     private final DressingRepository dressingRepository;
 
-    public List<Dressing> getDressings() {
+    public List<ResponseDto> getDressings() {
 
-        return dressingRepository.findAll();
+        return dressingRepository.findAll()
+                .stream().map(dressing -> new ResponseDto(dressing.getDressingId(), dressing.getDressingName())).collect(Collectors.toList());
+
     }
 
     @Transactional
-    public Dressing addDressing(DressingDto dto) {
+    public ResponseDto addDressing(DressingDto dto) {
 
-        return dressingRepository.save(new Dressing(null, dto.getDressingName()));
+        Dressing dressing = dressingRepository.save(new Dressing(null, dto.getDressingName()));
+        return new ResponseDto(dressing.getDressingId(), dressing.getDressingName());
     }
 
-    public Dressing getDressing(Long id) {
-        return dressingRepository.findById(id)
+    public ResponseDto getDressing(Long id) {
+        Dressing dressing = dressingRepository.findById(id)
                 .orElseThrow(NotFoundException::new);
+        return new ResponseDto(dressing.getDressingId(), dressing.getDressingName());
     }
 
     @Transactional

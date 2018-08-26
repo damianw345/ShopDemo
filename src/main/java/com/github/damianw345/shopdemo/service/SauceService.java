@@ -1,7 +1,8 @@
 package com.github.damianw345.shopdemo.service;
 
-import com.github.damianw345.shopdemo.entity.Sauce;
+import com.github.damianw345.shopdemo.dto.ResponseDto;
 import com.github.damianw345.shopdemo.dto.SauceDto;
+import com.github.damianw345.shopdemo.entity.Sauce;
 import com.github.damianw345.shopdemo.repository.SauceRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.ws.rs.NotFoundException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional(readOnly = true)
@@ -18,19 +20,22 @@ public class SauceService {
 
     private final SauceRepository sauceRepository;
 
-    public List<Sauce> getSauces() {
-        return sauceRepository.findAll();
+    public List<ResponseDto> getSauces() {
+        return sauceRepository.findAll()
+                .stream().map(sauce -> new ResponseDto(sauce.getSauceId(), sauce.getSauceName())).collect(Collectors.toList());
     }
 
     @Transactional
-    public Sauce addSauce(SauceDto dto) {
+    public ResponseDto addSauce(SauceDto dto) {
 
-        return sauceRepository.save(new Sauce(null, dto.getSauceName()));
+        Sauce sauce = sauceRepository.save(new Sauce(null, dto.getSauceName()));
+        return new ResponseDto(sauce.getSauceId(), sauce.getSauceName());
     }
 
-    public Sauce getSauce(Long id) {
-        return sauceRepository.findById(id)
+    public ResponseDto getSauce(Long id) {
+        Sauce sauce =  sauceRepository.findById(id)
                 .orElseThrow(NotFoundException::new);
+        return new ResponseDto(sauce.getSauceId(), sauce.getSauceName());
     }
 
     @Transactional

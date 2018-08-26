@@ -1,6 +1,6 @@
 package com.github.damianw345.shopdemo.controller;
 
-import com.github.damianw345.shopdemo.entity.Sauce;
+import com.github.damianw345.shopdemo.dto.ResponseDto;
 import com.github.damianw345.shopdemo.dto.SauceDto;
 import com.github.damianw345.shopdemo.service.SauceService;
 import lombok.RequiredArgsConstructor;
@@ -17,18 +17,18 @@ public class SauceController {
     private final SauceService sauceService;
 
     @RequestMapping(method = RequestMethod.GET)
-    List<Sauce> getSauces() {
+    List<ResponseDto> getSauces() {
         return sauceService.getSauces();
     }
 
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
-    Sauce addSauce(@RequestBody SauceDto dto) {
+    ResponseDto addSauce(@RequestBody SauceDto dto) {
         return sauceService.addSauce(dto);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    Sauce getSauce(@PathVariable Long id) {
+    ResponseDto getSauce(@PathVariable Long id) {
         return sauceService.getSauce(id);
     }
 
